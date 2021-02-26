@@ -1,8 +1,10 @@
 const express = require('express');
 const chatRouter = express.Router();
 
-const { home } = require('./chatController');
+const { getRoom, postRoom, deleteRoom } = require('./chatController');
 
-chatRouter.get('/', home);
+chatRouter.get('/chat/:id', getRoom);
+chatRouter.post('/chat/:id', postRoom);
+chatRouter.delete('/chat/:id/delete', deleteRoom);
 
 module.exports = chatRouter;
