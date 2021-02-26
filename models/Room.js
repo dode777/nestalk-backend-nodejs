@@ -5,6 +5,12 @@ const RoomSchema = new mongoose.Schema({
     type: String,
     required: 'Room Name is required',
   },
+  chat: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'chat',
+    },
+  ],
 });
 
 const model = mongoose.model('Room', RoomSchema);
