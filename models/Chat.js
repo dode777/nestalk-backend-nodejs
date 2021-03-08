@@ -1,21 +1,23 @@
 const mongoose = require('mongoose');
 
-const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-const ChatSchema = new mongoose.Schema({
-  userId: {
-    type: String,
-    required: 'User Notification is required',
+const ChatSchema = new mongoose.Schema(
+  {
+    userId: String,
+    message: {
+      type: String,
+      required: 'Message Content is required',
+    },
+    room: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'room',
+      },
+    ],
   },
-  message: {
-    type: String,
-    required: 'Message Content is required',
-  },
-  createdAt: {
-    type: String,
-    default: `${monthNames[new Date().getMonth()]} ${new Date().getDate()}, ${new Date().getFullYear()}`,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const model = mongoose.model('Chat', ChatSchema);
 module.exports = model;
